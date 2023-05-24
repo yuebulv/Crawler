@@ -1,3 +1,8 @@
 *.txt
 *.json
 *.html
+*.spec
+__pycache__/
+.idea/
+dist/
+build/
