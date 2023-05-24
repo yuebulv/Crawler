@@ -41,7 +41,7 @@ def trans3DdataTo3drFile(get3DdataFromDatfile,path_3drsaved):   # 2 将逐桩横
         whetherExitKeyInDmxfile=whetherContainTheKeyInDmxfile(key=key[0],path_Dmxfile=path_dmx)
         if len(whetherExitKeyInDmxfile)==0:
             errfile = open(path_errfile, 'a')
-            errfile.write(f'{path_dmx}中未找到桩号：{key}，3dr文件中不显示该桩号数据\n')
+            errfile.write(f'{path_dmx}中未找到桩号：{key[0]}，3dr文件中不显示该桩号数据\n')
             errfile.close()
         else:
         #</>
@@ -209,7 +209,6 @@ def TransEiDatToHintTf(get3DdataFromDatfile,path_tfsaved,path_EiAre):
             file_3dr.write('\n')
         #</>
     file_3dr.close()
-
 def getHdmAreFromEIarefile(key,EiarefilePath):
     # 功能通过已知桩号key，查找EiarefilePath中桩号key对应行的数据
     try:
@@ -233,7 +232,6 @@ def getHdmAreFromEIarefile(key,EiarefilePath):
     else:
         return res
     file_are.close()
-
 def initFunction(path_EiDat):
     path=path_EiDat
     data_dat=get3DdataFromDatfile(path)
@@ -276,7 +274,7 @@ def getfilepath(filetype):
     filetype=filetype.lower()
     root = tk.Tk()
     root.withdraw()
-    Folderpath = filedialog.askdirectory()  # 获得选择好的文件夹
+    Folderpath = filedialog.askdirectory(title="选择EI dat are dmx 所在文件夹")  # 获得选择好的文件夹
     # Filepath = filedialog.askopenfilename()  # 获得选择好的文件
     rootdir = os.path.join(Folderpath)
     for (dirpath, dirnames, filenames) in os.walk(rootdir):
@@ -309,5 +307,16 @@ def whetherContainTheKeyInDmxfile(key,path_Dmxfile):
         dmxfile.close()
 if __name__=="__main__":
     resu=getfilepath('Dat')
+    rootb = tk.Tk()
+    # 创建一个文本Label对象
+    rootb.geometry('200x80+200+200')
+    # textLabel = Label(rootb,  # 将内容绑定在  root 初始框上面
+    #                   text="3dr,tf数据已生成",
+    #                   justify=LEFT,  # 用于 指明文本的 位置
+    #                   padx=10)  # 限制 文本的 位置 , padx 是 x轴的意思 .
+    # textLabel.pack(side=LEFT)  # 致命 textlabel 在初识框 中的位置
+    rootb.confirmbutton=Button(rootb,text='运行结束',width=10,command=rootb.quit)
+    rootb.confirmbutton.grid(row=1,column=1)
+    mainloop()
 
 
