@@ -28,6 +28,7 @@ def output_company_glxy_data(headers, company_id: list, company_name: list,  sta
     # 2.获得公司设计项目
     end_page += 1
     for companyId in id_list:
+        # time.sleep(10)
         for prj_page in range(start_page, end_page):
             url = 'https://glxy.mot.gov.cn/company/getCompanyAchieveList.do?companyId=' + companyId + '&type=1a'
             # url='https://glxy.mot.gov.cn/company/getCompanyAchieveList.do?companyId=596b4e9580f94532ad6c066f3701aa07&type=1a'
